@@ -7,17 +7,27 @@ import { IQuiz } from "@/lib/quiz";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export default function QuizDisplayer(props: { id: number }) {
     const { id } = props;
 
-    const { setQuizSelected } = useUserContext();
+    const { setQuizSelected, addQuizScore } = useUserContext();
 
     const [quiz, setQuiz] = useState<IQuiz>();
     const [error, setError] = useState<boolean>(false);
 
     const [selectedAnswers, setSelectedAnswers] = useState<Record<number, string>>({});
     const [correctedAnswers, setCorrectedAnswers] = useState<Record<number, boolean>>()
+
+    const calculatePercentage = (values: Record<number, boolean>, numberQuestion: number) => {
+        var correct = 0;
+        for (const key in values) {
+            values[key] && correct++
+        }
+
+        return (correct / numberQuestion) * 100
+    }
 
     const handleAnswerChange = (questionId: number, value: string) => {
         setSelectedAnswers(prevState => ({
@@ -36,12 +46,21 @@ export default function QuizDisplayer(props: { id: number }) {
                 );
 
                 setCorrectedAnswers(response.data)
+
+
+                if (quiz) {
+                    const percentage = calculatePercentage(response.data, quiz.questions.length);
+                    toast(`Your answers are correct at ${percentage} %`);
+
+                    addQuizScore(quiz.id, percentage)
+                }
+
             } catch (error) {
                 setError(true);
             }
         };
 
-        fetchData();
+        fetchData()
     };
 
     const handleGoBack = () => {
@@ -94,6 +113,7 @@ export default function QuizDisplayer(props: { id: number }) {
                         </RadioGroup>
                     </div>
                 ))}</div>}
+            {quiz && correctedAnswers && <p className="text-green-500">{`Your answers are correct at ${calculatePercentage(correctedAnswers, quiz.questions.length)} %`}</p>}
             <Button onClick={handleSubmit} className="w-full my-8">Submit</Button>
         </div>
     );

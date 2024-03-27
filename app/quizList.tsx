@@ -7,7 +7,7 @@ import { IQuiz } from "@/lib/quiz";
 import { Button } from "@/components/ui/button";
 
 export default function QuizList() {
-  const { username, setQuizSelected } = useUserContext();
+  const { username, setQuizSelected, quizzesCompletion } = useUserContext();
 
   const [quizzes, setQuizzes] = useState<IQuiz[]>();
   const [error, setError] = useState<boolean>(false);
@@ -37,7 +37,7 @@ export default function QuizList() {
     <div className="flex flex-col gap-2">
       {quizzes && quizzes.map((quiz, index) => {
         return <Button variant="outline" key={index} onClick={() => handlSelectQuiz(quiz.id)}>
-          {quiz.title}
+          {quiz.title} {quizzesCompletion[quiz.id] && <span className="mx-2 p-1 text-gray-600 dark:text-gray-400 text-xs border rounded">{quizzesCompletion[quiz.id]} %</span>}
         </Button>
       })}
     </div>
