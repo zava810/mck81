@@ -1,5 +1,5 @@
 export class Question {
-    id: number;
+    guid: string;
     title: string;
     answerAlpha: string;
     answerBeta: string;
@@ -7,14 +7,14 @@ export class Question {
     answerDelta?: string;
 
     constructor(
-        id: number,
+        guid: string,
         title: string,
         answerAlpha: string,
         answerBeta: string,
         answerCharlie?: string,
         answerDelta?: string,
     ) {
-        this.id = id;
+        this.guid = guid;
         this.title = title;
         this.answerAlpha = answerAlpha;
         this.answerBeta = answerBeta;
@@ -27,7 +27,7 @@ export class QuestionWithAnswer extends Question {
     validAnswer: string;
 
     constructor(
-        id: number,
+        guid: string,
         title: string,
         validAnswer: string,
         answerAlpha: string,
@@ -35,7 +35,7 @@ export class QuestionWithAnswer extends Question {
         answerCharlie?: string,
         answerDelta?: string,
     ) {
-        super(id, title, answerAlpha, answerBeta, answerCharlie, answerDelta)
+        super(guid, title, answerAlpha, answerBeta, answerCharlie, answerDelta)
         this.validAnswer = validAnswer
     }
 }

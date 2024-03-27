@@ -17,8 +17,8 @@ export default function QuizDisplayer(props: { id: number }) {
     const [quiz, setQuiz] = useState<IQuiz>();
     const [error, setError] = useState<boolean>(false);
 
-    const [selectedAnswers, setSelectedAnswers] = useState<Record<number, string>>({});
-    const [correctedAnswers, setCorrectedAnswers] = useState<Record<number, boolean>>()
+    const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
+    const [correctedAnswers, setCorrectedAnswers] = useState<Record<string, boolean>>()
 
     const calculatePercentage = (values: Record<number, boolean>, numberQuestion: number) => {
         var correct = 0;
@@ -29,7 +29,7 @@ export default function QuizDisplayer(props: { id: number }) {
         return (correct / numberQuestion) * 100
     }
 
-    const handleAnswerChange = (questionId: number, value: string) => {
+    const handleAnswerChange = (questionId: string, value: string) => {
         setSelectedAnswers(prevState => ({
             ...prevState,
             [questionId]: value
@@ -88,8 +88,8 @@ export default function QuizDisplayer(props: { id: number }) {
                     {quiz.title}</h3>
                 {quiz.questions.map((question, index) => (
                     <div key={index} className="mb-4">
-                        <p className="font-semibold mb-1">{index + 1}. {question.title} {correctedAnswers && (correctedAnswers[question.id] ? <span className="text-green-500">✓</span> : <span className="text-red-500">⨯</span>)}</p>
-                        <RadioGroup value={selectedAnswers[index]} onValueChange={(value: string) => handleAnswerChange(question.id, value)}>
+                        <p className="font-semibold mb-1">{index + 1}. {question.title} {correctedAnswers && (correctedAnswers[question.guid] ? <span className="text-green-500">✓</span> : <span className="text-red-500">⨯</span>)}</p>
+                        <RadioGroup value={selectedAnswers[index]} onValueChange={(value: string) => handleAnswerChange(question.guid, value)}>
                             <div className="flex items-center space-x-2">
                                 <RadioGroupItem value={question.answerAlpha} id={`r1-${index}`} />
                                 <Label htmlFor={`r1-${index}`}>{question.answerAlpha}</Label>

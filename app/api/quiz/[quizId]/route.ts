@@ -26,7 +26,7 @@ export async function POST(
         const correctedAnswers: Record<string, boolean> = {};
 
         quiz.questions.forEach((question) => {
-            correctedAnswers[question.id] = answers[question.id] === question.validAnswer;
+            correctedAnswers[question.guid] = answers[question.guid] === question.validAnswer;
         });
 
         return Response.json(correctedAnswers);
