@@ -6,6 +6,8 @@ interface UserContextType {
   username?: string;
   setUsername: (username: string) => void;
   quizCompleted: boolean;
+  quizSelected: number | undefined;
+  setQuizSelected: (quizId: number | undefined) => void;
 }
 
 const UserContext = createContext<UserContextType | null>(null);
@@ -15,8 +17,9 @@ const UserContextProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const [username, setUsername] = useState<string>();
   const [quizCompleted] = useState<boolean>(false);
+  const [quizSelected, setQuizSelected] = useState<number>()
 
-  const value = { username, setUsername, quizCompleted };
+  const value = { username, setUsername, quizCompleted, quizSelected, setQuizSelected };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
