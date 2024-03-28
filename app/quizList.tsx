@@ -6,15 +6,29 @@ import { useEffect, useState } from "react";
 import { IQuiz } from "@/lib/quiz";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "sonner";
 
 export default function QuizList() {
-  const { username, setQuizSelected, quizzesCompletion } = useUserContext();
+  const { username, setQuizSelected, quizzesCompletion, clearData } = useUserContext();
 
   const [quizzes, setQuizzes] = useState<IQuiz[]>();
   const [error, setError] = useState<boolean>(false);
 
   const handlSelectQuiz = (id: number) => {
     setQuizSelected(id)
+  }
+
+  const handleAskClearData = () => {
+    toast("Do you really want to clear your data ?", {
+      action: {
+        label: "Yes",
+        onClick: handleClearData,
+      },
+    });
+  }
+
+  const handleClearData = () => {
+    clearData()
   }
 
   useEffect(() => {
@@ -36,11 +50,11 @@ export default function QuizList() {
       Hey {username}
     </h3>
     <div className="flex flex-col gap-2">
-      {quizzes ? quizzes.map((quiz, index) => {
+      {quizzes ? (quizzes.map((quiz, index) => {
         return <Button variant="outline" key={index} onClick={() => handlSelectQuiz(quiz.id)}>
           {quiz.title} {quizzesCompletion[quiz.id] && <span className="mx-2 p-1 text-gray-600 dark:text-gray-400 text-xs border rounded">{quizzesCompletion[quiz.id]} %</span>}
         </Button>
-      }) :
+      })) :
         Array(3).fill(null).map((_, index) => {
           return (
             <div key={index} className="w-full">
@@ -48,6 +62,7 @@ export default function QuizList() {
             </div>)
         })
       }
+      <Button variant={"secondary"} onClick={handleAskClearData}>Clear my data</Button>
     </div>
   </div>;
 }
