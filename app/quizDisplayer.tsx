@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
+import { HomeIcon, PaperPlaneIcon } from "@radix-ui/react-icons"
 
 export default function QuizDisplayer(props: { id: number }) {
     const { id } = props;
@@ -85,8 +86,8 @@ export default function QuizDisplayer(props: { id: number }) {
 
         <div>
             <h3 className="my-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-                <a onClick={handleGoBack} className="text-gray-600 dark:text-gray-400 cursor-pointer">Quizzes / </a>
-                {quiz.title}</h3>
+                <Button onClick={handleGoBack} className="text-gray-600 dark:text-gray-400 cursor-pointer" variant="outline"><HomeIcon /> </Button>
+                {" "}/ {quiz.title}</h3>
             {quiz.questions.map((question, index) => (
                 <div key={index} className="mb-4">
                     <p className="font-semibold mb-1">{index + 1}. {question.title} {correctedAnswers && (correctedAnswers[question.guid] ? <span className="text-green-500">✓</span> : <span className="text-red-500">⨯</span>)}</p>
@@ -115,7 +116,7 @@ export default function QuizDisplayer(props: { id: number }) {
                 </div>
             ))}
             {correctedAnswers && <p className="text-green-500">{`Your answers are correct at ${calculatePercentage(correctedAnswers, quiz.questions.length)} %`}</p>}
-            <Button onClick={handleSubmit} className="w-full my-8">Submit</Button>
+            <Button onClick={handleSubmit} className="w-full my-8">Submit <PaperPlaneIcon className="ml-2 h-4 w-4" /></Button>
         </div>
 
         :
