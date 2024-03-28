@@ -3,24 +3,20 @@ import { Question, QuestionWithAnswer } from "./answer";
 export interface IQuiz {
     id: number,
     title: string;
-    done: number;
     questions: Question[]
 }
 
 export class QuizWithAnswer implements IQuiz {
     id: number;
     title: string;
-    done: number;
     questions: QuestionWithAnswer[];
 
     constructor(
         id: number,
         title: string,
-        done: number,
         questions: QuestionWithAnswer[]) {
         this.id = id;
         this.title = title;
-        this.done = done;
         this.questions = questions
     }
 }
@@ -29,7 +25,6 @@ export const quizzes: QuizWithAnswer[] = [
     {
         id: 1,
         title: "Astronomy",
-        done: 0,
         questions: [
             {
                 guid: "02a87b19-9035-47d1-8d0e-9bd5f3e074e1",
@@ -107,7 +102,6 @@ export const quizzes: QuizWithAnswer[] = [
     {
         id: 2,
         title: "World Capitals",
-        done: 0,
         questions: [
             {
                 guid: "a32c6a14-b2cc-4f88-9f59-d50b43c2d13b",
@@ -184,7 +178,6 @@ export const quizzes: QuizWithAnswer[] = [
     {
         id: 3,
         title: "History",
-        done: 0,
         questions: [
             {
                 guid: "4d87e32a-c0c3-46e8-99e4-ae29be2c07fc",
@@ -255,6 +248,144 @@ export const quizzes: QuizWithAnswer[] = [
                 validAnswer: "1789",
                 answerAlpha: "1789",
                 answerBeta: "1791"
+            }
+        ]
+    },
+    {
+        id: 4,
+        title: "World History",
+        questions: [
+            {
+                guid: "88b34237-e4d2-4f11-93bc-990f40cb0475",
+                title: "Who was the first emperor of Rome?",
+                validAnswer: "Augustus",
+                answerAlpha: "Augustus",
+                answerBeta: "Julius Caesar"
+            },
+            {
+                guid: "9cd96cd2-1e9e-41ad-80f6-c5b3c204e024",
+                title: "Which empire was ruled by King Hammurabi and known for its Code of Laws?",
+                validAnswer: "Babylonian Empire",
+                answerAlpha: "Babylonian Empire",
+                answerBeta: "Assyrian Empire"
+            },
+            {
+                guid: "7d0c17f3-c363-4cc3-a028-c0b0f94e50a4",
+                title: "Who was the first female Prime Minister of the United Kingdom?",
+                validAnswer: "Margaret Thatcher",
+                answerAlpha: "Margaret Thatcher",
+                answerBeta: "Queen Elizabeth I"
+            },
+            {
+                guid: "5f36e39e-9334-448e-af15-5d77edbf9ec4",
+                title: "What event marked the beginning of World War II?",
+                validAnswer: "Invasion of Poland",
+                answerAlpha: "Invasion of Poland",
+                answerBeta: "Bombing of Pearl Harbor"
+            },
+            {
+                guid: "c3a5bfc5-b2ec-41d7-936d-02ddc1aa4b51",
+                title: "Who led the Bolshevik Revolution in Russia?",
+                validAnswer: "Vladimir Lenin",
+                answerAlpha: "Vladimir Lenin",
+                answerBeta: "Joseph Stalin"
+            },
+            {
+                guid: "803b44d7-c40f-4046-bc6f-af22c573bc4f",
+                title: "What ancient civilization built the Great Pyramids of Giza?",
+                validAnswer: "Ancient Egyptians",
+                answerAlpha: "Ancient Egyptians",
+                answerBeta: "Mesopotamians"
+            },
+            {
+                guid: "a8a74b26-dedd-48a2-8492-3a1d13767c8a",
+                title: "Who was the founder of the Mongol Empire?",
+                validAnswer: "Genghis Khan",
+                answerAlpha: "Genghis Khan",
+                answerBeta: "Kublai Khan"
+            },
+            {
+                guid: "e5d8885d-8c1a-4d51-b4a9-950625d9c4f7",
+                title: "What was the name of the ship on which Charles Darwin sailed during his voyage?",
+                validAnswer: "HMS Beagle",
+                answerAlpha: "HMS Beagle",
+                answerBeta: "Endeavour"
+            }
+        ]
+    },
+    {
+        id: 5,
+        title: "Literature",
+        questions: [
+            {
+                guid: "3e6a5d9c-8863-4e8d-9aa7-aaad0b835ee3",
+                title: "Who wrote the novel 'To Kill a Mockingbird'?",
+                validAnswer: "Harper Lee",
+                answerAlpha: "Harper Lee",
+                answerBeta: "Mark Twain"
+            },
+            {
+                guid: "ee14a9f4-5f9f-45a3-8ef4-55d9d60ed473",
+                title: "Which Shakespearean play features the characters Romeo and Juliet?",
+                validAnswer: "Romeo and Juliet",
+                answerAlpha: "Romeo and Juliet",
+                answerBeta: "Macbeth"
+            },
+            {
+                guid: "b8f72fd1-1c67-4a09-924b-0ae3c7563b3e",
+                title: "Who wrote the epic poem 'The Iliad'?",
+                validAnswer: "Homer",
+                answerAlpha: "Homer",
+                answerBeta: "Virgil"
+            },
+            {
+                guid: "2d0770f0-cb26-4e91-b4a1-f8a725848f0b",
+                title: "Which novel by Jane Austen begins with the famous line 'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife'?",
+                validAnswer: "Pride and Prejudice",
+                answerAlpha: "Pride and Prejudice",
+                answerBeta: "Sense and Sensibility"
+            },
+            {
+                guid: "2d96a0b1-2fb7-4a3b-8155-82eb49a36eb3",
+                title: "Who is the author of '1984'?",
+                validAnswer: "George Orwell",
+                answerAlpha: "George Orwell",
+                answerBeta: "Aldous Huxley"
+            },
+            {
+                guid: "458f79b1-68cc-4f4b-8a9d-605ee2710b62",
+                title: "What is the name of the fictional detective created by Sir Arthur Conan Doyle?",
+                validAnswer: "Sherlock Holmes",
+                answerAlpha: "Sherlock Holmes",
+                answerBeta: "Hercule Poirot"
+            },
+            {
+                guid: "3c0f3500-82a1-4cb4-8545-0fb60ff94b08",
+                title: "Which novel begins with the line 'It was the best of times, it was the worst of times'?",
+                validAnswer: "A Tale of Two Cities",
+                answerAlpha: "A Tale of Two Cities",
+                answerBeta: "Great Expectations"
+            },
+            {
+                guid: "43d3f065-6a2f-4e0a-af21-5aa6a2d4d193",
+                title: "Who wrote 'The Great Gatsby'?",
+                validAnswer: "F. Scott Fitzgerald",
+                answerAlpha: "F. Scott Fitzgerald",
+                answerBeta: "Ernest Hemingway"
+            },
+            {
+                guid: "5939d745-cb21-4e0f-8de3-0ef953197c89",
+                title: "Which novel features the character Huckleberry Finn?",
+                validAnswer: "Adventures of Huckleberry Finn",
+                answerAlpha: "Adventures of Huckleberry Finn",
+                answerBeta: "Tom Sawyer"
+            },
+            {
+                guid: "a2746b23-5e58-4cd8-9929-c8f8d571f8f0",
+                title: "Who wrote the play 'Hamlet'?",
+                validAnswer: "William Shakespeare",
+                answerAlpha: "William Shakespeare",
+                answerBeta: "Christopher Marlowe"
             }
         ]
     }
