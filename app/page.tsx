@@ -1,9 +1,9 @@
 "use client";
 
-import { useUserContext } from "./UserProvider";
-import QuizDisplayer from "./quizDisplayer";
-import QuizList from "./quizList";
-import UsernamePicker from "./usernamePicker";
+import { useUserContext } from "@/components/providers/userProvider";
+import QuizDisplayer from "@/components/pages/quizDisplayer";
+import QuizList from "@/components/pages/quizList";
+import UsernamePicker from "@/components/pages/usernamePicker";
 
 export default function Home() {
   const { username, quizSelected } = useUserContext();

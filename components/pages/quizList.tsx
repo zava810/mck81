@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useUserContext } from "./UserProvider";
+import { useUserContext } from "@/components/providers/userProvider";
 import { useEffect, useState } from "react";
 import { IQuiz } from "@/lib/quiz";
 import { Button } from "@/components/ui/button";

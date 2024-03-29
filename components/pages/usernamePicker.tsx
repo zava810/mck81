@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { usernames } from "@/lib/username";
 import { useState } from "react";
 import { toast } from "sonner";
-import { useUserContext } from "./UserProvider";
+import { useUserContext } from "@/components/providers/userProvider";
 
 export default function UsernamePicker() {
   const { setUsername } = useUserContext();

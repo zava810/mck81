@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useUserContext } from "./UserProvider";
+import { useUserContext } from "@/components/providers/userProvider";
 import React, { useEffect, useState } from "react";
 import { IQuiz } from "@/lib/quiz";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
