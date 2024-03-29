@@ -1,0 +1,49 @@
+name: Next.js CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [ opened, reopened ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Detect package manager
+        id: detect-package-manager
+        run: |
+          if [ -f "${{ github.workspace }}/yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+          elif [ -f "${{ github.workspace }}/package.json" ]; then
+            echo "manager=npm" >> $GITHUB_OUTPUT
+          else
+            echo "Unable to determine package manager" >&2
+            exit 1
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Restore cache (optional)
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            .next/cache
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package*.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
+      - name: Install dependencies
+        run: ${{ steps.detect-package-manager.outputs.manager }} install
+
+      - name: Run tests
+        run: ${{ steps.detect-package-manager.outputs.manager }} test
+
+      - name: Build Next.js project
+        run: ${{ steps.detect-package-manager.outputs.manager }} run build
