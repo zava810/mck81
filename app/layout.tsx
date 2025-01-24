@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import React from "react";
 import UserContextProvider from "@/components/providers/userProvider";
+import { ing115 } from "@/components/lifonts/localfonts";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Quiz",
-  description: "Get ready to have a funny time",
+  title: "kyuiz",
+  description: "get ready to Have a funny time",
 };
 
 export default function RootLayout({
@@ -20,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <body className={inter.className}>
+      <body className={ing115.className}>
         <UserContextProvider>
           {children}
           <Toaster />
