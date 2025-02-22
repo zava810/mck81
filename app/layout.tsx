@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import React from "react";
 import UserContextProvider from "@/components/providers/userProvider";
-import { ing115 } from "@/components/lifonts/localfonts";
+import { ing15 } from "@/components/lifonts/localfonts";
 
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <body className={ing115.className}>
+      <body className={ing15.className}>
         <UserContextProvider>
           {children}
           <Toaster />
