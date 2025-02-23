@@ -1,6 +1,6 @@
 import {
-	ing15, ing25, eng15, eng25, binaryv15,
-// hex15, binaryh15,	
+	ing15, ing25, binaryv15,
+// eng15, hex15, binaryh15,	
 //	bangla115, gurmukhi115, oriya115, telugu115, 
 //	guzrati115, kannada115, korean115, sinhala115, 
 //	hindi115, malayalam115, tamil115, 
